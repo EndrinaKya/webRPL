@@ -111,51 +111,48 @@
           </ul>
         </div>
       </div>
-
-      <div class="d-flex ms-auto me-4">
-        <div class="nav-item nav-link text-white" style="cursor:pointer;" onclick="logout()">Logout</div>
-      </div>
       
     </nav>
     
-    <div class="wrapper">
-        <div class="form-container mt-4 mb-4">
-            <h3 class="mb-4 text-center">UNGGAH MATERI DAN TUGAS</h3>
-            <form>
-              <div class="mb-3">
-                <label for="judul" class="form-label">Judul Materi</label>
-                <input type="text" class="form-control" id="judul" placeholder="Contoh: Materi Bab 2 - Ekosistem">
-              </div>
-          
-              <div class="mb-3">
-                <label for="kelas" class="form-label">Kelas</label>
-                <select class="form-select" id="kelas">
-                  <option selected disabled>Pilih Kelas</option>
-                  <option>X IPA</option>
-                  <option>X IPS</option>
-                </select>
-              </div>
-          
-              <div class="mb-3">
-                <label for="mapel" class="form-label">Mata Pelajaran</label>
-                <input type="text" class="form-control" id="mapel" placeholder="Contoh: IPA">
-              </div>
-          
-              <div class="mb-3">
-                <label for="deskripsi" class="form-label">Deskripsi</label>
-                <textarea class="form-control" id="deskripsi" rows="4" placeholder="Deskripsi singkat materi atau tugas..."></textarea>
-              </div>
-          
-              <div class="mb-3">
-                <label for="fileUpload" class="form-label">Unggah File</label>
-                <input class="form-control" type="file" id="fileUpload">
-              </div>
-          
-              <button type="submit" class="input-submit">Unggah</button>
-            </form>
+    <div class="wrapper container">
+        <h3 class="pt-5 text-center fw-bold mb-5">MATERI DAN TUGAS SISWA</h3>
+        <div class="form-container card mb-4 mt-4">
+        <form>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="mapel" class="form-label">Mata Pelajaran</label>
+              <input type="text" class="form-control" id="mapel" placeholder="Contoh: Matematika">
+            </div>
+            <div class="col">
+              <label for="guru" class="form-label">Nama Guru</label>
+              <input type="text" class="form-control" id="guru" placeholder="Contoh: Bu Siti">
+            </div>
           </div>
-          
- 
+      
+          <div class="mb-3">
+            <label for="judulMateri" class="form-label">Judul Materi</label>
+            <input type="text" class="form-control" id="judulMateri" placeholder="Contoh: Aljabar Dasar">
+          </div>
+      
+          <div class="mb-3">
+            <label for="linkMateri" class="form-label">Link/File Materi</label>
+            <input type="text" class="form-control" id="linkMateri" placeholder="Contoh: https://... atau upload file">
+            <input type="file" class="form-control mt-2">
+          </div>
+      
+          <div class="mb-3">
+            <label for="deskripsiTugas" class="form-label">Deskripsi Tugas</label>
+            <textarea class="form-control" id="deskripsiTugas" rows="3" placeholder="Instruksi tugas jika ada..."></textarea>
+          </div>
+      
+          <div class="mb-3">
+            <label for="fileTugas" class="form-label">Upload File Tugas (Opsional)</label>
+            <input type="file" class="form-control" id="fileTugas">
+          </div>
+      
+          <button type="submit" class="btn btn-success">Simpan Materi dan Tugas</button>
+        </form>
+      </div>
     <div class="text-center p-3" style="background-color: #b2a496;">
         © 2025 <strong>SISMADU</strong> - All rights reserved.
     </div>
