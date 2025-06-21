@@ -61,6 +61,9 @@
             <li class="nav-item">
               <a class="nav-link text-white ms-2" href="#">Data Guru</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link text-white ms-2" href="#">Jadwal Mengajar</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -144,117 +147,117 @@
         </div>
     </div>
 
-    <div class="text-center p-3 mt-4" style="background-color: #b2a496;">
-        © 2025 <strong>SISMADU</strong> - All rights reserved.
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-
+    
     <script>
-        let siswaList = [
-        { nama: "Rina Ayu", nisn: "1234567890", kelas: "VII A" },
+      let siswaList = [
+      { nama: "Rina Ayu", nisn: "1234567890", kelas: "VII A" },
         { nama: "Budi Santoso", nisn: "9876543210", kelas: "VII B" },
         { nama: "Siti Nurlaila", nisn: "1928374655", kelas: "VIII A" }
         ];
-
+        
         function renderTable(data = siswaList) {
         const tbody = document.getElementById("siswaBody");
         tbody.innerHTML = "";
         data.forEach((siswa, i) => {
-            tbody.innerHTML += `
-            <tr>
-                <td>${i + 1}</td>
-                <td>${siswa.nama}</td>
-                <td>${siswa.nisn}</td>
-                <td>${siswa.kelas}</td>
-                <td>
+          tbody.innerHTML += `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${siswa.nama}</td>
+            <td>${siswa.nisn}</td>
+            <td>${siswa.kelas}</td>
+            <td>
                 <button class="btn btn-sm btn-warning" onclick="editSiswa(${i})">Edit</button>
                 <button class="btn btn-sm btn-danger" onclick="hapusSiswa(${i})">Hapus</button>
-                </td>
+              </td>
             </tr>
             `;
-        });
+          });
         }
-
+        
         function searchSiswa() {
-        const keyword = document.getElementById("searchInput").value.toLowerCase();
-        const hasil = siswaList.filter(s =>
-            s.nama.toLowerCase().includes(keyword) || s.nisn.includes(keyword)
-        );
-        renderTable(hasil);
+          const keyword = document.getElementById("searchInput").value.toLowerCase();
+          const hasil = siswaList.filter(s =>
+          s.nama.toLowerCase().includes(keyword) || s.nisn.includes(keyword)
+          );
+          renderTable(hasil);
         }
-
+        
         function filterByKelas() {
         const selected = document.getElementById("filterKelas").value;
         if (selected === "all") {
-            renderTable(siswaList);
+          renderTable(siswaList);
         } else {
-            const hasil = siswaList.filter(s => s.kelas === selected);
+          const hasil = siswaList.filter(s => s.kelas === selected);
             renderTable(hasil);
+          }
         }
-        }
-
+        
         let modal;
-
+        
         function showAddModal() {
-        document.getElementById("siswaForm").reset();
-        document.getElementById("modalTitle").innerText = "Tambah Siswa";
-        document.getElementById("editIndex").value = "";
-        modal.show();
+          document.getElementById("siswaForm").reset();
+          document.getElementById("modalTitle").innerText = "Tambah Siswa";
+          document.getElementById("editIndex").value = "";
+          modal.show();
         }
-
+        
         function submitForm(event) {
-        event.preventDefault();
-        const nama = document.getElementById("nama").value.trim();
-        const nisn = document.getElementById("nisn").value.trim();
-        const kelas = document.getElementById("kelas").value;
-        const index = document.getElementById("editIndex").value;
-
-        if (!nama || !nisn || !kelas) {
+          event.preventDefault();
+          const nama = document.getElementById("nama").value.trim();
+          const nisn = document.getElementById("nisn").value.trim();
+          const kelas = document.getElementById("kelas").value;
+          const index = document.getElementById("editIndex").value;
+          
+          if (!nama || !nisn || !kelas) {
             alert("Semua field harus diisi!");
             return;
-        }
-
-        const data = { nama, nisn, kelas };
-
+          }
+          
+          const data = { nama, nisn, kelas };
+          
         if (index === "") {
             siswaList.push(data);
-        } else {
+          } else {
             siswaList[index] = data;
+          }
+          
+          modal.hide();
+          renderTable();
+          searchSiswa(); // update view if searching
+          filterByKelas(); // update filter view if filter selected
         }
-
-        modal.hide();
-        renderTable();
-        searchSiswa(); // update view if searching
-        filterByKelas(); // update filter view if filter selected
-        }
-
+        
         function editSiswa(index) {
-        const siswa = siswaList[index];
-        document.getElementById("modalTitle").innerText = "Edit Siswa";
-        document.getElementById("editIndex").value = index;
-        document.getElementById("nama").value = siswa.nama;
-        document.getElementById("nisn").value = siswa.nisn;
-        document.getElementById("kelas").value = siswa.kelas;
-        modal.show();
+          const siswa = siswaList[index];
+          document.getElementById("modalTitle").innerText = "Edit Siswa";
+          document.getElementById("editIndex").value = index;
+          document.getElementById("nama").value = siswa.nama;
+          document.getElementById("nisn").value = siswa.nisn;
+          document.getElementById("kelas").value = siswa.kelas;
+          modal.show();
         }
-
+        
         function hapusSiswa(index) {
-        if (confirm("Yakin ingin menghapus data siswa ini?")) {
+          if (confirm("Yakin ingin menghapus data siswa ini?")) {
             siswaList.splice(index, 1);
             renderTable();
-        }
+          }
         }
 
         function logout() {
         window.location.href = "login.html";
-        }
+      }
 
         window.onload = function() {
-        modal = new bootstrap.Modal(document.getElementById('siswaModal'));
-        renderTable();
+          modal = new bootstrap.Modal(document.getElementById('siswaModal'));
+          renderTable();
         }
-    </script>
-
-</body>
-</html>
+      </script>
+      
+      <div class="text-center p-3 mt-4" style="background-color: #b2a496;">
+          © 2025 <strong>SISMADU</strong> - All rights reserved.
+      </div>
+  
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
