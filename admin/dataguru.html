@@ -55,14 +55,30 @@
             <li class="nav-item">
               <a class="nav-link text-white ms-2" href="#">Dashboard</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white ms-2" href="#">Data Siswa</a>
+            <li class="nav-item dropdown ms-2">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Data Master
+              </a>
+              <ul class="dropdown-menu dropdown-menu">
+                <li><a class="dropdown-item" href="#">Data Siswa</a></li>
+                <li><a class="dropdown-item" href="#">Data Guru</a></li>
+                <li><a class="dropdown-item" href="#">Data Mata Pelajaran</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown ms-2">
+              <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Jadwal
+              </a>
+              <ul class="dropdown-menu dropdown-menu">
+                <li><a class="dropdown-item" href="#">Jadwal Pelajaran</a></li>
+                <li><a class="dropdown-item" href="#">Jadwal Mengajar Guru</a></li>
+              </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white ms-2" href="#">Data Guru</a>
+              <a class="nav-link text-white ms-2" href="#">Nilai</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white ms-2" href="#">Jadwal Mengajar</a>
+              <a class="nav-link text-white ms-2" href="#">Tugas & Materi</a>
             </li>
           </ul>
         </div>
@@ -188,7 +204,7 @@
 
         guruModal.hide();
         renderGuruTable();
-        searchGuru(); // update if user searching
+        searchGuru(); 
         }
 
         function editGuru(index) {
