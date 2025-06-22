@@ -70,21 +70,14 @@
               <li><a class="dropdown-item" href="#">Jadwal Pelajaran</a></li>
               <li><a class="dropdown-item" href="#">Jadwal Mengajar Guru</a></li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white ms-2" href="#">Nilai</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white ms-2" href="#">Tugas & Materi</a>
-          </li>
         </ul>
       </div>
     </div>
+    <div class="d-flex ms-auto me-4">
+      <div class="nav-item nav-link text-white" style="cursor:pointer;" onclick="logout()">Logout</div>
+    </div>
   </nav>
 
-  <div class="d-flex ms-auto me-4">
-    <div class="nav-item nav-link text-white" style="cursor:pointer;" onclick="logout()">Logout</div>
-  </div>
 
   <div class="container">
     <!-- Data Mata Pelajaran -->
@@ -100,6 +93,8 @@
             <th>No</th>
             <th>Kode</th>
             <th>Nama Mata Pelajaran</th>
+            <th>Kelas</th>
+            <th>Jam</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -127,7 +122,15 @@
               <label for="namaMapel" class="form-label">Nama Mapel</label>
               <input type="text" class="form-control" id="namaMapel" required />
             </div>
-          </div>
+            <div class="mb-3">
+              <label for="kelasMapel" class="form-label">Kelas</label>
+              <input type="text" class="form-control" id="kelasMapel" placeholder="Contoh: VII A" required />
+            </div>
+            <div class="mb-3">
+              <label for="jamMapel" class="form-label">Jam</label>
+              <input type="text" class="form-control" id="jamMapel" placeholder="Contoh: 07.00 - 08.30" required />
+            </div>
+            
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
             <button type="submit" class="btn btn-custom">Simpan</button>
@@ -139,14 +142,11 @@
 
   <script>
     let mapelList = [
-      { kode: "BIN", nama: "Bahasa Indonesia" },
-      { kode: "MAT", nama: "Matematika" },
-      { kode: "FIS", nama: "Fisika" },
-      { kode: "KIM", nama: "Kimia" }
+      { kode: "BIN", nama: "Bahasa Indonesia", kelas: "VII A", jam: "07.00 - 08.30" },
+      { kode: "MAT", nama: "Matematika", kelas: "VIII B", jam: "08.30 - 10.00"},
+      { kode: "IPA", nama: "Ilmu Pengetahuan Alam", kelas: "VII B", jam: "10.00 - 11.30" }
     ];
-    
-    let mapelModal;
-    
+
     function renderMapelTable() {
       const tbody = document.getElementById("mapelBody");
       tbody.innerHTML = "";
@@ -156,6 +156,8 @@
             <td>${i + 1}</td>
             <td>${m.kode}</td>
             <td>${m.nama}</td>
+            <td>${m.kelas}</td>
+            <td>${m.jam}</td>
             <td>
               <button class="btn btn-sm btn-warning" onclick="editMapel(${i})">Edit</button>
               <button class="btn btn-sm btn-danger" onclick="hapusMapel(${i})">Hapus</button>
@@ -164,28 +166,39 @@
         `;
       });
     }
-    
+
     function showMapelModal() {
       document.getElementById("mapelModalTitle").innerText = "Tambah Mata Pelajaran";
       document.getElementById("editMapelIndex").value = "";
       document.getElementById("kodeMapel").value = "";
       document.getElementById("namaMapel").value = "";
+      document.getElementById("kelasMapel").value = "";
+      document.getElementById("jamMapel").value = "";
       mapelModal.show();
     }
-    
+
     function submitMapel(event) {
       event.preventDefault();
       const kode = document.getElementById("kodeMapel").value.trim().toUpperCase();
       const nama = document.getElementById("namaMapel").value.trim();
+      const kelas = document.getElementById("kelasMapel").value.trim();
+      const jam = document.getElementById("jamMapel").value.trim();
       const index = document.getElementById("editMapelIndex").value;
-    
-      if (!kode || !nama) {
+
+      if (!kode || !nama || !kelas || !jam) {
         alert("Semua field harus diisi!");
         return;
       }
-    
-      const data = { kode, nama };
-    
+
+      // Validasi jam (optional)
+      const regexJam = /^\d{2}\.\d{2} - \d{2}\.\d{2}$/;
+      if (!regexJam.test(jam)) {
+        alert("Format jam tidak valid. Gunakan format: 07.00 - 08.30");
+        return;
+      }
+
+      const data = { kode, nama, kelas, jam };
+
       if (index === "") {
         const exists = mapelList.some(m => m.kode === kode);
         if (exists) {
@@ -201,19 +214,22 @@
         }
         mapelList[index] = data;
       }
-    
+
       mapelModal.hide();
       renderMapelTable();
     }
-    
+
     function editMapel(index) {
       const m = mapelList[index];
       document.getElementById("editMapelIndex").value = index;
       document.getElementById("kodeMapel").value = m.kode;
       document.getElementById("namaMapel").value = m.nama;
+      document.getElementById("kelasMapel").value = m.kelas;
+      document.getElementById("jamMapel").value = m.jam;
       document.getElementById("mapelModalTitle").innerText = "Edit Mata Pelajaran";
       mapelModal.show();
     }
+
     
     function hapusMapel(index) {
       if (confirm("Yakin ingin menghapus mata pelajaran ini?")) {

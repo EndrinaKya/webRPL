@@ -69,12 +69,6 @@
               <li><a class="dropdown-item" href="#">Jadwal Mengajar Guru</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white ms-2" href="#">Nilai</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white ms-2" href="#">Tugas & Materi</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -96,11 +90,12 @@
         <thead class="table-light">
           <tr>
             <th>No</th>
-            <th>Nama Guru</th>
-            <th>Mata Pelajaran</th>
-            <th>Kelas</th>
             <th>Hari</th>
             <th>Jam</th>
+            <th>Kelas</th>
+            <th>Mata Pelajaran</th>
+            <th>Guru Pengampu</th>
+            <th>Ruang Kelas</th>
             <th>Aksi</th>
           </tr>
         </thead>
@@ -116,20 +111,8 @@
           <h5 class="modal-title" id="jadwalModalLabel">Tambah Jadwal Pelajaran</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <div class="modal-body">
+        < class="modal-body">
           <input type="hidden" id="editJadwalIndex">
-          <div class="mb-3">
-            <label for="namaGuru" class="form-label">Nama Guru</label>
-            <input type="text" class="form-control" id="namaGuru" required />
-          </div>
-          <div class="mb-3">
-            <label for="mapel" class="form-label">Mata Pelajaran</label>
-            <input type="text" class="form-control" id="mapel" required />
-          </div>
-          <div class="mb-3">
-            <label for="kelas" class="form-label">Kelas</label>
-            <input type="text" class="form-control" id="kelas" required />
-          </div>
           <div class="mb-3">
             <label for="hari" class="form-label">Hari</label>
             <select class="form-select" id="hari" required>
@@ -145,29 +128,50 @@
             <label for="jam" class="form-label">Jam</label>
             <input type="text" class="form-control" id="jam" placeholder="Contoh: 07.00 - 08.30" required />
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-custom">Simpan</button>
-        </div>
+    
+          <div class="mb-3">
+            <label for="kelas" class="form-label">Kelas</label>
+            <input type="text" class="form-control" id="kelas" required />
+          </div>
+          <div class="mb-3">
+            <label for="mapel" class="form-label">Mata Pelajaran</label>
+            <input type="text" class="form-control" id="mapel" required />
+          </div>
+            <div class="mb-3">
+              <label for="namaGuru" class="form-label">Guru Pengampu</label>
+              <input type="text" class="form-control" id="namaGuru" required />
+            </div>
+          <div class="mb-3">
+            <label for="ruang" class="form-label">Ruang Kelas</label>
+            <input type="text" class="form-control" id="ruang" required />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-custom">Simpan</button>
+          </div>
       </form>
     </div>
-  </div>
+  </div>  
 
   <script>
     let jadwalList = [
-      { nama: "Ahmad Fauzi", mapel: "Bahasa Indonesia", kelas: "VII A", hari: "Senin", jam: "08.00 - 09.30" },
-      { nama: "Rina Marlina", mapel: "Matematika", kelas: "VIII B", hari: "Selasa", jam: "10.00 - 11.30" }
+      {
+        nama: "Ahmad Fauzi",
+        mapel: "Bahasa Indonesia",
+        kelas: "VII A",
+        hari: "Senin",
+        jam: "08.00 - 09.30",
+        ruang: "Ruang 1"
+      },
+      {
+        nama: "Rina Marlina",
+        mapel: "Matematika",
+        kelas: "VIII B",
+        hari: "Selasa",
+        jam: "10.00 - 11.30",
+        ruang: "Ruang 2"
+      }
     ];
-
-    let jadwalPelajaran = [
-      { hari: "Senin", jam: "07.00 - 08.30", mapel: "Bahasa Indonesia", guru: "Ahmad Fauzi", kelas: "VII A" },
-      { hari: "Senin", jam: "08.30 - 10.00", mapel: "Matematika", guru: "Rina Marlina", kelas: "VII A" },
-      { hari: "Selasa", jam: "07.00 - 08.30", mapel: "Bahasa Indonesia", guru: "Ahmad Fauzi", kelas: "VIII B" },
-      { hari: "Selasa", jam: "08.30 - 10.00", mapel: "Matematika", guru: "Rina Marlina", kelas: "VIII B" }
-    ];
-
-    let jadwalModal;
 
     function renderJadwalTable(data = jadwalList) {
       const tbody = document.getElementById("jadwalBody");
@@ -176,11 +180,12 @@
         tbody.innerHTML += `
           <tr>
             <td>${i + 1}</td>
-            <td>${j.nama}</td>
-            <td>${j.mapel}</td>
-            <td>${j.kelas}</td>
             <td>${j.hari}</td>
             <td>${j.jam}</td>
+            <td>${j.kelas}</td>
+            <td>${j.mapel}</td>
+            <td>${j.nama}</td>
+            <td>${j.ruang}</td>
             <td>
               <button class="btn btn-sm btn-warning" onclick="editJadwal(${i})">Edit</button>
               <button class="btn btn-sm btn-danger" onclick="hapusJadwal(${i})">Hapus</button>
@@ -193,7 +198,7 @@
     function showJadwalModal() {
       document.getElementById("jadwalForm").reset();
       document.getElementById("editJadwalIndex").value = "";
-      document.getElementById("jadwalModalLabel").innerText = "Tambah Jadwal Mengajar";
+      document.getElementById("jadwalModalLabel").innerText = "Tambah Jadwal Pelajaran";
       jadwalModal.show();
     }
 
@@ -204,17 +209,29 @@
       const kelas = document.getElementById("kelas").value.trim();
       const hari = document.getElementById("hari").value;
       const jam = document.getElementById("jam").value.trim();
+      const ruang = document.getElementById("ruang").value.trim();
       const index = document.getElementById("editJadwalIndex").value;
-      if (!nama || !mapel || !kelas || !hari || !jam) {
+
+      if (!nama || !mapel || !kelas || !hari || !jam || !ruang) {
         alert("Semua field harus diisi!");
         return;
       }
-      const data = { nama, mapel, kelas, hari, jam };
+
+      // Validasi format jam (misalnya: 07.00 - 08.30)
+      const regexJam = /^\d{2}\.\d{2} - \d{2}\.\d{2}$/;
+      if (!regexJam.test(jam)) {
+        alert("Format jam tidak valid. Gunakan format: 07.00 - 08.30");
+        return;
+      }
+
+      const data = { nama, mapel, kelas, hari, jam, ruang };
+
       if (index === "") {
         jadwalList.push(data);
       } else {
         jadwalList[index] = data;
       }
+
       jadwalModal.hide();
       renderJadwalTable();
       searchJadwal();
@@ -228,7 +245,8 @@
       document.getElementById("kelas").value = j.kelas;
       document.getElementById("hari").value = j.hari;
       document.getElementById("jam").value = j.jam;
-      document.getElementById("jadwalModalLabel").innerText = "Edit Jadwal Mengajar";
+      document.getElementById("ruang").value = j.ruang;
+      document.getElementById("jadwalModalLabel").innerText = "Edit Jadwal Pelajaran";
       jadwalModal.show();
     }
 
@@ -247,35 +265,11 @@
       renderJadwalTable(hasil);
     }
 
-    function filterJadwalPelajaran() {
-      const kelasDipilih = document.getElementById("filterKelas").value;
-      const hasil = kelasDipilih ? jadwalPelajaran.filter(j => j.kelas === kelasDipilih) : [];
-      const tbody = document.getElementById("jadwalPelajaranBody");
-      tbody.innerHTML = "";
-      if (hasil.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="4" class="text-center">Silakan pilih kelas untuk melihat jadwal.</td></tr>`;
-        return;
-      }
-      hasil.forEach(j => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${j.hari}</td>
-            <td>${j.jam}</td>
-            <td>${j.mapel}</td>
-            <td>${j.guru}</td>
-          </tr>
-        `;
-      });
-    }
-
-    function logout() {
-      window.location.href = "login.html";
-    }
-
     window.onload = function () {
       jadwalModal = new bootstrap.Modal(document.getElementById('jadwalModal'));
       renderJadwalTable();
     }
+
   </script>
 
   <div class="text-center p-3 mt-4" style="background-color: #b2a496;">
