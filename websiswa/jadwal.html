@@ -112,109 +112,47 @@
         </div>
       </div>
     </nav>
-    
+
     <div class="wrapper">
       <h3 class="pt-5 text-center fw-bold">JADWAL PELAJARAN</h3>
       <div class="py-5 d-flex justify-content-center">
-        <form>
-            <div class="table-responsive">
-                <table class="table table-bordered text-center">
-                  <thead>
-                    <thead>
-                      <tr>
-                        <th>Hari</th>
-                        <th>Jam</th>
-                        <th>Mata Pelajaran</th>
-                        <th>Guru Pengajar</th>
-                        <th>Ruang</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- Senin -->
-                      <tr>
-                        <td>Senin</td>
-                        <td>07.00 - 08.30</td>
-                        <td>Matematika</td>
-                        <td>Bu Rina</td>
-                        <td>Kelas 10-A</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>08.30 - 10.00</td>
-                        <td>Bahasa Indonesia</td>
-                        <td>Pak Dedi</td>
-                        <td>Kelas 10-A</td>
-                      </tr>
-                    
-                      <!-- Selasa -->
-                      <tr>
-                        <td>Selasa</td>
-                        <td>07.00 - 08.30</td>
-                        <td>Bahasa Inggris</td>
-                        <td>Miss Lina</td>
-                        <td>Kelas 10-A</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>08.30 - 10.00</td>
-                        <td>PPKN</td>
-                        <td>Bu Ratna</td>
-                        <td>Kelas 10-A</td>
-                      </tr>
-                    
-                      <!-- Rabu -->
-                      <tr>
-                        <td>Rabu</td>
-                        <td>07.00 - 08.30</td>
-                        <td>IPA</td>
-                        <td>Pak Budi</td>
-                        <td>Kelas 10-A</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>08.30 - 10.00</td>
-                        <td>Seni Budaya</td>
-                        <td>Bu Sari</td>
-                        <td>Kelas 10-A</td>
-                      </tr>
-                    
-                      <!-- Kamis -->
-                      <tr>
-                        <td>Kamis</td>
-                        <td>07.00 - 08.30</td>
-                        <td>Pendidikan Agama</td>
-                        <td>Ust. Arif</td>
-                        <td>Kelas 10-A</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>08.30 - 10.00</td>
-                        <td>Penjas</td>
-                        <td>Pak Yoga</td>
-                        <td>Lapangan</td>
-                      </tr>
-                    
-                      <!-- Jumat -->
-                      <tr>
-                        <td>Jumat</td>
-                        <td>07.00 - 08.30</td>
-                        <td>TIK</td>
-                        <td>Bu Ayu</td>
-                        <td>Lab Komputer</td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td>08.30 - 10.00</td>
-                        <td>Bahasa Jawa</td>
-                        <td>Pak Joko</td>
-                        <td>Kelas 10-A</td>
-                      </tr>
-                    </tbody>
-                  </thead>
-                </table>
-            </div>
+        <form action="/submit-jadwal" method="post" style="width: 100%; max-width: 900px;">
+          <div class="table-responsive">
+            <table class="table table-bordered text-center">
+              <thead class="table-light">
+                <tr>
+                  <th>Hari</th>
+                  <th>Jam</th>
+                  <th>Mata Pelajaran</th>
+                  <th>Guru Pengajar</th>
+                  <th>Ruang</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Contoh data jadwal -->
+                <tr>
+                  <td>Senin</td>
+                  <td>07.00 - 08.30</td>
+                  <td>Matematika</td>
+                  <td>Bu Rina</td>
+                  <td>Kelas 10-A</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>08.30 - 10.00</td>
+                  <td>Bahasa Indonesia</td>
+                  <td>Pak Dedi</td>
+                  <td>Kelas 10-A</td>
+                </tr>
+                <!-- Tambahkan baris lain -->
+              </tbody>
+            </table>
+          </div>
         </form>
       </div>
+    </div>
+    
+    
 
 
       <div class="text-center p-3" style="background-color: #b2a496;">

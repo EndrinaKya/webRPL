@@ -78,13 +78,12 @@
     </div>
   </nav>
 
-
   <div class="container">
     <!-- Data Mata Pelajaran -->
     <div class="table-container mt-5" id="mapelSection">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4>Data Mata Pelajaran</h4>
-        <button class="btn btn-custom" onclick="showMapelModal()">+ Tambah Mata Pelajaran</button>
+        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#mapelModal">+ Tambah Mata Pelajaran</button>
       </div>
   
       <table class="table table-bordered" id="mapelTable">
@@ -103,42 +102,45 @@
         </tbody>
       </table>
     </div>
-    
+  
     <!-- Modal Tambah/Edit Mata Pelajaran -->
-    <div class="modal fade" id="mapelModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog">
-        <form class="modal-content" onsubmit="submitMapel(event)">
-          <div class="modal-header">
-            <h5 class="modal-title" id="mapelModalTitle">Tambah Mata Pelajaran</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <form action="proses_mapel.php" method="post">
+      <div class="modal fade" id="mapelModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="mapelModalTitle">Tambah Mata Pelajaran</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" name="editMapelIndex" id="editMapelIndex" />
+              <div class="mb-3">
+                <label for="kodeMapel" class="form-label">Kode Mapel</label>
+                <input type="text" class="form-control" id="kodeMapel" name="kode" required />
+              </div>
+              <div class="mb-3">
+                <label for="namaMapel" class="form-label">Nama Mapel</label>
+                <input type="text" class="form-control" id="namaMapel" name="nama" required />
+              </div>
+              <div class="mb-3">
+                <label for="kelasMapel" class="form-label">Kelas</label>
+                <input type="text" class="form-control" id="kelasMapel" name="kelas" placeholder="Contoh: VII A" required />
+              </div>
+              <div class="mb-3">
+                <label for="jamMapel" class="form-label">Jam</label>
+                <input type="text" class="form-control" id="jamMapel" name="jam" placeholder="Contoh: 07.00 - 08.30" required />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-custom">Simpan</button>
+            </div>
           </div>
-          <div class="modal-body">
-            <input type="hidden" id="editMapelIndex" />
-            <div class="mb-3">
-              <label for="kodeMapel" class="form-label">Kode Mapel</label>
-              <input type="text" class="form-control" id="kodeMapel" required />
-            </div>
-            <div class="mb-3">
-              <label for="namaMapel" class="form-label">Nama Mapel</label>
-              <input type="text" class="form-control" id="namaMapel" required />
-            </div>
-            <div class="mb-3">
-              <label for="kelasMapel" class="form-label">Kelas</label>
-              <input type="text" class="form-control" id="kelasMapel" placeholder="Contoh: VII A" required />
-            </div>
-            <div class="mb-3">
-              <label for="jamMapel" class="form-label">Jam</label>
-              <input type="text" class="form-control" id="jamMapel" placeholder="Contoh: 07.00 - 08.30" required />
-            </div>
-            
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-custom">Simpan</button>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
+  
 
   <script>
     let mapelList = [

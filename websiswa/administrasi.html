@@ -77,11 +77,11 @@
         </div>
       </div>
     </nav>
+
+    <div class="wrapper container mt-5">
+      <h3 class="text-center fw-bold mb-5">ADMINISTRASI</h3>
     
-    <!-- Informasi Siswa -->
-    <div class="wrapper">
-      <h3 class="pt-5 text-center fw-bold mb-5">ADMINISTRASI</h3>
-      <div class="form-container card mb-4 mt-4">
+      <div class="form-container card mb-4">
         <div class="card-body">
           <h5 class="card-title mb-3">Informasi Siswa</h5>
           <p><strong>Nama:</strong> Alma</p>
@@ -89,9 +89,9 @@
           <p><strong>Kelas:</strong> XII RPL 1</p>
         </div>
       </div>
-
+    
       <!-- Status Pembayaran -->
-      <div class="form-container py-4 card mb-4">
+      <div class="form-container card mb-4">
         <div class="card-body">
           <h5 class="card-title">Status Pembayaran</h5>
           <table class="table table-striped mt-3">
@@ -120,7 +120,42 @@
           </table>
         </div>
       </div>
+    
+      <!-- Modal Pembayaran -->
+      <div class="modal fade" id="modalBayar" tabindex="-1" aria-labelledby="modalBayarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <form action="proses_pembayaran.php" method="POST" class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalBayarLabel">Pembayaran Semester 2</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" name="nisn" value="1234567890" />
+              <input type="hidden" name="semester" value="2" />
+              <p>Tagihan: <strong>Rp 150.000</strong></p>
+              <div class="mb-3">
+                <label for="metodePembayaran" class="form-label">Pilih Metode Pembayaran</label>
+                <select class="form-select" id="metodePembayaran" name="metodePembayaran" required>
+                  <option value="">-- Pilih Metode --</option>
+                  <option value="transfer">Transfer Bank</option>
+                  <option value="cash">Tunai</option>
+                  <option value="e-wallet">E-Wallet</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="buktiPembayaran" class="form-label">Upload Bukti Pembayaran</label>
+                <input type="file" class="form-control" id="buktiPembayaran" name="buktiPembayaran" required />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-primary">Bayar</button>
+            </div>
+          </form>
+        </div>
       </div>
+    </div>
+    
 
       <div class="text-center p-3" style="background-color: #b2a496;">
         © 2025 <strong>SISMADU</strong> - All rights reserved.

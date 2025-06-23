@@ -82,66 +82,71 @@
       </div>
     </nav>
 
-
     <div class="container mt-5">
-        <div class="table-container">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4>Daftar Guru</h4>
-            <button class="btn btn-custom" onclick="showGuruModal()">+ Tambah Guru</button>
-          </div>
-      
-          <div class="row mb-3">
-            <div class="col-md-4">
-              <input type="text" id="searchGuruInput" class="form-control" onkeyup="searchGuru()" placeholder="Cari nama atau NIP...">
-            </div>
-          </div>
-      
-          <table class="table table-bordered table-striped" id="guruTable">
-            <thead class="table-light">
-              <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>NIP</th>
-                <th>Mata Pelajaran</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="guruBody">
-              <!-- Data guru dimasukkan oleh JS -->
-            </tbody>
-          </table>
+      <div class="table-container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4>Daftar Guru</h4>
+          <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#guruModal">+ Tambah Guru</button>
         </div>
+    
+        <!-- Input Pencarian -->
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <input type="text" id="searchGuruInput" class="form-control" onkeyup="searchGuru()" placeholder="Cari nama atau NIP...">
+          </div>
+        </div>
+    
+        <!-- Tabel Guru -->
+        <table class="table table-bordered table-striped" id="guruTable">
+          <thead class="table-light">
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>NIP</th>
+              <th>Mata Pelajaran</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="guruBody">
+            <!-- Data guru dimasukkan oleh JS -->
+          </tbody>
+        </table>
+      </div>
     </div>
-
-    <div class="modal fade" id="guruModal" tabindex="-1" aria-labelledby="guruModalLabel" aria-hidden="true">
+    
+    <!-- Modal Tambah/Edit Guru -->
+    <form action="proses_guru.php" method="post">
+      <div class="modal fade" id="guruModal" tabindex="-1" aria-labelledby="guruModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form class="modal-content" id="guruForm" onsubmit="submitGuru(event)">
+          <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="guruModalLabel">Tambah Guru</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-              <input type="hidden" id="editGuruIndex">
+              <input type="hidden" name="editGuruIndex" id="editGuruIndex">
               <div class="mb-3">
                 <label for="namaGuru" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="namaGuru" required />
+                <input type="text" class="form-control" id="namaGuru" name="nama" required />
               </div>
               <div class="mb-3">
                 <label for="nipGuru" class="form-label">NIP</label>
-                <input type="text" class="form-control" id="nipGuru" required />
+                <input type="text" class="form-control" id="nipGuru" name="nip" required />
               </div>
               <div class="mb-3">
                 <label for="mapelGuru" class="form-label">Mata Pelajaran</label>
-                <input type="text" class="form-control" id="mapelGuru" required />
+                <input type="text" class="form-control" id="mapelGuru" name="mapel" required />
               </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
               <button type="submit" class="btn btn-custom">Simpan</button>
             </div>
-          </form>
+          </div>
         </div>
-    </div>
+      </div>
+    </form>
+    
 
     <script>
        let guruList = [

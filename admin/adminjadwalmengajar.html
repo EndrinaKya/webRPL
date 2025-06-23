@@ -77,20 +77,19 @@
     </div>
   </nav>
 
-
   <div class="container mt-5">
     <div class="table-container">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4>Jadwal Mengajar Guru</h4>
-        <button class="btn btn-custom" onclick="showJadwalModal()">+ Tambah Jadwal</button>
+        <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#jadwalModal">+ Tambah Jadwal</button>
       </div>
-
+  
       <div class="row mb-3">
         <div class="col-md-4">
           <input type="text" id="searchJadwalInput" class="form-control" onkeyup="searchJadwal()" placeholder="Cari guru atau mapel...">
         </div>
       </div>
-
+  
       <table class="table table-bordered table-striped" id="jadwalTable">
         <thead class="table-light">
           <tr>
@@ -109,52 +108,60 @@
       </table>
     </div>
   </div>
-
-  <!-- Modal Jadwal -->
-  <div class="modal fade" id="jadwalModal" tabindex="-1" aria-labelledby="jadwalModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <form class="modal-content" id="jadwalForm" onsubmit="submitJadwal(event)">
-        <div class="modal-header">
-          <h5 class="modal-title" id="jadwalModalLabel">Tambah Jadwal Mengajar</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+  
+  <!-- Modal Tambah Jadwal -->
+  <form action="proses_jadwal_guru.php" method="post">
+    <div class="modal fade" id="jadwalModal" tabindex="-1" aria-labelledby="jadwalModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="jadwalModalLabel">Tambah Jadwal Mengajar</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" name="editJadwalIndex" id="editJadwalIndex" />
+  
+            <div class="mb-3">
+              <label for="namaGuru" class="form-label">Nama Guru</label>
+              <input type="text" class="form-control" id="namaGuru" name="nama_guru" required />
+            </div>
+  
+            <div class="mb-3">
+              <label for="mapel" class="form-label">Mata Pelajaran</label>
+              <input type="text" class="form-control" id="mapel" name="mapel" required />
+            </div>
+  
+            <div class="mb-3">
+              <label for="kelas" class="form-label">Kelas</label>
+              <input type="text" class="form-control" id="kelas" name="kelas" required />
+            </div>
+  
+            <div class="mb-3">
+              <label for="hari" class="form-label">Hari</label>
+              <select class="form-select" id="hari" name="hari" required>
+                <option value="">Pilih Hari</option>
+                <option>Senin</option>
+                <option>Selasa</option>
+                <option>Rabu</option>
+                <option>Kamis</option>
+                <option>Jumat</option>
+              </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="jam" class="form-label">Jam</label>
+              <input type="text" class="form-control" id="jam" name="jam" placeholder="Contoh: 07.00 - 08.30" required />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="submit" class="btn btn-custom">Simpan</button>
+          </div>
         </div>
-        <div class="modal-body">
-          <input type="hidden" id="editJadwalIndex">
-          <div class="mb-3">
-            <label for="namaGuru" class="form-label">Nama Guru</label>
-            <input type="text" class="form-control" id="namaGuru" required />
-          </div>
-          <div class="mb-3">
-            <label for="mapel" class="form-label">Mata Pelajaran</label>
-            <input type="text" class="form-control" id="mapel" required />
-          </div>
-          <div class="mb-3">
-            <label for="kelas" class="form-label">Kelas</label>
-            <input type="text" class="form-control" id="kelas" required />
-          </div>
-          <div class="mb-3">
-            <label for="hari" class="form-label">Hari</label>
-            <select class="form-select" id="hari" required>
-              <option value="">Pilih Hari</option>
-              <option>Senin</option>
-              <option>Selasa</option>
-              <option>Rabu</option>
-              <option>Kamis</option>
-              <option>Jumat</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="jam" class="form-label">Jam</label>
-            <input type="text" class="form-control" id="jam" placeholder="Contoh: 07.00 - 08.30" required />
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-custom">Simpan</button>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
+  </form>
+  
 
   <script>
     let jadwalList = [

@@ -81,81 +81,83 @@
       </div>
     </nav>
 
-   
-
     <div class="container">
-        <div class="table-container">
+      <div class="table-container">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4>Daftar Siswa Per Kelas</h4>
-            <button class="btn btn-custom" onclick="showAddModal()">+ Tambah Siswa</button>
+          <h4>Daftar Siswa Per Kelas</h4>
+          <button class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#siswaModal">+ Tambah Siswa</button>
         </div>
-
+    
+        <!-- Filter dan Pencarian -->
         <div class="row mb-3">
-            <div class="col-md-4">
+          <div class="col-md-4">
             <select class="form-select" id="filterKelas" onchange="filterByKelas()">
-                <option value="all">Semua Kelas</option>
-                <option value="VII A">VII A</option>
-                <option value="VII B">VII B</option>
-                <option value="VIII A">VIII A</option>
+              <option value="all">Semua Kelas</option>
+              <option value="VII A">VII A</option>
+              <option value="VII B">VII B</option>
+              <option value="VIII A">VIII A</option>
             </select>
-            </div>
-            <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
             <input type="text" id="searchInput" class="form-control" onkeyup="searchSiswa()" placeholder="Cari nama atau NISN...">
-            </div>
+          </div>
         </div>
-
+    
+        <!-- Tabel Siswa -->
         <table class="table table-bordered table-striped" id="siswaTable">
-            <thead class="table-light">
+          <thead class="table-light">
             <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>NISN</th>
-                <th>Kelas</th>
-                <th>Aksi</th>
+              <th>No</th>
+              <th>Nama</th>
+              <th>NISN</th>
+              <th>Kelas</th>
+              <th>Aksi</th>
             </tr>
-            </thead>
-            <tbody id="siswaBody">
-            <!-- Data siswa dimasukkan oleh JS -->
-            </tbody>
+          </thead>
+          <tbody id="siswaBody">
+            <!-- Data siswa diisi melalui JavaScript -->
+          </tbody>
         </table>
-        </div>
+      </div>
     </div>
+    
 
-    <!-- Modal Tambah/Edit Siswa -->
-    <div class="modal fade" id="siswaModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <form action="proses_siswa.php" method="post">
+      <div class="modal fade" id="siswaModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal-dialog">
-        <form class="modal-content" id="siswaForm" onsubmit="submitForm(event)">
+          <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="modalTitle">Tambah Siswa</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title" id="modalTitle">Tambah Siswa</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <input type="hidden" id="editIndex" />
-            <div class="mb-3">
+              <input type="hidden" name="editIndex" id="editIndex" />
+              <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
-                <input type="text" class="form-control" id="nama" required />
-            </div>
-            <div class="mb-3">
+                <input type="text" class="form-control" id="nama" name="nama" required />
+              </div>
+              <div class="mb-3">
                 <label for="nisn" class="form-label">NISN</label>
-                <input type="text" class="form-control" id="nisn" required />
-            </div>
-            <div class="mb-3">
+                <input type="text" class="form-control" id="nisn" name="nisn" required />
+              </div>
+              <div class="mb-3">
                 <label for="kelas" class="form-label">Kelas</label>
-                <select class="form-select" id="kelas" required>
-                <option value="">Pilih Kelas</option>
-                <option value="VII A">VII A</option>
-                <option value="VII B">VII B</option>
-                <option value="VIII A">VIII A</option>
+                <select class="form-select" id="kelas" name="kelas" required>
+                  <option value="">Pilih Kelas</option>
+                  <option value="VII A">VII A</option>
+                  <option value="VII B">VII B</option>
+                  <option value="VIII A">VIII A</option>
                 </select>
-            </div>
+              </div>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-            <button type="submit" class="btn btn-custom">Simpan</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button type="submit" class="btn btn-custom">Simpan</button>
             </div>
-        </form>
+          </div>
         </div>
-    </div>
+      </div>
+    </form>
 
     
     <script>
